@@ -13,7 +13,7 @@ main().catch(err => console.log(err));
 
 async function main() {
     mongoose.set("strictQuery", false);
-    const uri = "mongodb+srv://ToDoBom:WetgVPwRGY0DuJCG@todobom.3bcl7nh.mongodb.net/ToDoBom";
+    const uri = "mongodb+srv://ToDoBom:WetgVPwRGY0DuJCG@todobom.3bcl7nh.mongodb.net/?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
     await client.connect();
     await listDatabases(client);
