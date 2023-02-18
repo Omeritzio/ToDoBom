@@ -13,7 +13,7 @@ main().catch(err => console.log(err));
 
 async function main() {
     mongoose.set("strictQuery", false);
-    const uri = "mongodb+srv://ToDoBom:WetgVPwRGY0DuJCG@todobom.3bcl7nh.mongodb.net/?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://ToDoBom:WetgVPwRGY0DuJCG@todobom.3bcl7nh.mongodb.net/ToDoBom?retryWrites=true&w=majority";
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
     client.connect(err => {
         const collection = client.db("ToDoBom").collection("items");
@@ -39,15 +39,13 @@ async function main() {
     await mongoose.connect(uri);
 
 
-
-
 }
 
 const itemSchema = {
     name: String,
 };
 
-const Item = client.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
 const item1 = new Item({name: "Insert Task: "});
 
 const d = [item1];
