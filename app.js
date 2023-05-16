@@ -1,4 +1,5 @@
 var express = require("express");
+require('dotenv').config()
 var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var app = express();
@@ -9,11 +10,12 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+
 main().catch(err => console.log(err));
 
 async function main() {
     mongoose.set("strictQuery", false);
-    const uri = "mongodb+srv://ToDoBom:WetgVPwRGY0DuJCG@todobom.ohp9sli.mongodb.net/ToDoBom?retryWrites=true&w=majority";
+    const uri = process.env.MONGO_URL;
     
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
     client.connect(err => {
